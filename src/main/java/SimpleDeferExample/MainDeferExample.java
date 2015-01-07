@@ -115,7 +115,7 @@ public class MainDeferExample {
 		public String call(String arg) throws Exception {
 			System.out.println("mycb is called with: " + arg);
 
-			// TODO Auto-generated method stub
+			
 			return arg;
 		}
 	}
@@ -137,7 +137,7 @@ public class MainDeferExample {
 				System.out.println("group cb: " + s);
 			}
 			
-			// TODO Auto-generated method stub
+			
 			return arg;
 		}
 	}
