@@ -40,10 +40,7 @@ public class MainDeferExample {
 			lstDfd.get(1).callback(String.valueOf(2));
 			lstDfd.get(0).callback(String.valueOf(1));
 			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 	}
 	
 	
@@ -61,10 +58,7 @@ public class MainDeferExample {
 			System.out.println("test");
 			Thread.sleep(4000);
 			dfd.callback("callback data after 4 seconds aaa");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 	}
 	
 	
@@ -98,47 +92,6 @@ public class MainDeferExample {
 				lstDfd.get(i).callback(String.valueOf(i + 1));
 			}
 			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	
-	/**
-	 * simple callback that takes a string, print it and return it
-	 * @author syle
-	 *
-	 */
-	public static class MyCallback implements Callback<String, String> {
-
-		public String call(String arg) throws Exception {
-			System.out.println("mycb is called with: " + arg);
-
-			
-			return arg;
-		}
-	}
-	
-	
-	
-	
-	/**
-	 * group callbacks that takes an array of string, print them and return them.
-	 * @author syle
-	 *
-	 */
-	public static class MyGroupCallback implements Callback<ArrayList<String>, ArrayList<String>>{
-
-		public ArrayList<String> call(ArrayList<String> arg) throws Exception {
-			System.out.println("group callback");
-			
-			for (String s : arg){
-				System.out.println("group cb: " + s);
-			}
-			
-			
-			return arg;
-		}
-	}
+		} catch (Exception e) {}
+	}	
 }
