@@ -81,6 +81,21 @@ Group In Any Order
     }
 ```
 
+Sample run for group in any order
+```
+  mycb is called with: 4
+  mycb is called with: 3
+  mycb is called with: 5
+  mycb is called with: 2
+  mycb is called with: 1
+  group callback
+  group cb: 4
+  group cb: 3
+  group cb: 5
+  group cb: 2
+  group cb: 1
+```
+
 Group In Order
 ==============
 ```  
