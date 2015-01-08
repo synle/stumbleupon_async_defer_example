@@ -46,39 +46,40 @@ Group In Any Order
   * @param args
   */
   public static void main(String[] args) {
-    try {
-      List<Deferred<String>> lstDfd = new ArrayList<Deferred<String>>();
-      List<Callback<String, String>> lstCb = new ArrayList<Callback<String, String>>();
-
-      for (int i = 1; i <= 5; i++){
-        Callback<String, String> cb = new MyCallback();
-        Deferred<String> dfd = new Deferred<String>();
-
-        dfd.addCallback(cb);
-
-        lstDfd.add(dfd);
-        lstCb.add(cb);
-      }
-
-
-      //combine stuff
-      Deferred<ArrayList<String>> dfdGroup = Deferred.group(lstDfd);
-      Callback<ArrayList<String>, ArrayList<String>> cbGroup = new MyGroupCallback();
-      dfdGroup.addCallback(cbGroup);
-
-
-      //randomly call the back
-      lstDfd.get(3).callback(String.valueOf(4));
-      lstDfd.get(2).callback(String.valueOf(3));
-      lstDfd.get(4).callback(String.valueOf(5));
-      lstDfd.get(1).callback(String.valueOf(2));
-      lstDfd.get(0).callback(String.valueOf(1));
-
-      } catch (Exception e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
-    }
+		try {
+			List<Deferred<String>> lstDfd = new ArrayList<Deferred<String>>();
+			List<Callback<String, String>> lstCb = new ArrayList<Callback<String, String>>();
+			List<Integer> lstIdx = new ArrayList<Integer>();
+			
+			for (int i = 0; i < 10; i++){
+				Callback<String, String> cb = new MyCallback();
+				Deferred<String> dfd = new Deferred<String>();
+				
+				dfd.addCallback(cb);
+				
+				lstDfd.add(dfd);
+				lstCb.add(cb);
+				lstIdx.add(i);
+			}
+			
+			
+			//combine stuff
+			Deferred<ArrayList<String>> dfdGroup = Deferred.group(lstDfd);
+			Callback<ArrayList<String>, ArrayList<String>> cbGroup = new MyGroupCallback();
+			dfdGroup.addCallback(cbGroup);
+			
+			
+			//randomly call the back
+			while (lstIdx.size() > 0){
+				int randomIdx = randInt(0, lstIdx.size() - 1);
+				int deferIdx = lstIdx.get(randomIdx);
+				
+				lstDfd.get(deferIdx).callback(String.valueOf(deferIdx));
+				lstIdx.remove(randomIdx);
+			}
+			
+		} catch (Exception e) {}
+	}
 ```
 
 Sample run for group in any order
